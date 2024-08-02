@@ -206,6 +206,12 @@ export const formatToPercent = (num: number | string | undefined): string => {
   return parsedNumber.toFixed(2) + '%'
 }
 
+export const showPercent = (num: number | string | undefined): string => {
+  if (typeof num === 'undefined') return '0.00%'
+  const parsedNumber = typeof num === 'string' ? parseFloat(num) : num
+  return parsedNumber.toFixed(2) + '%'
+}
+
 export const formatMul100 = (num: number | string | undefined): number => {
   if (typeof num === 'undefined') return 0.0
   return typeof num === 'string' ? parseFloat(num) * 100 : num * 100

@@ -133,7 +133,7 @@ const loginData = reactive({
   },
   loginForm: {
     uuid: '',
-    tenantName: 'AlphaHome',
+    tenantName: 'NovaiChain',
     mobileNumber: '',
     code: ''
   }

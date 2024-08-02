@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="text-center">
-      <UserAvatar :img="userInfo?.avatar" />
-    </div>
     <ul class="list-group list-group-striped">
       <li class="list-group-item">
         <Icon class="mr-5px" icon="ep:user" />
@@ -48,7 +45,6 @@
 </template>
 <script lang="ts" setup>
 import { formatDate } from '@/utils/formatTime'
-import UserAvatar from './UserAvatar.vue'
 
 import { getUserProfile, ProfileVO } from '@/api/system/user/profile'
 

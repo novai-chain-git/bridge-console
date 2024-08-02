@@ -137,5 +137,7 @@ export enum DICT_TYPE {
   INFRA_FILE_STORAGE = 'infra_file_storage',
 
   // ========== ASSET 模块 ==========
-  ASSET_TRANSACTION_TYPE = 'asset_transaction_type' // 资产交易类型
+  TRANSACTION_TYPE = 'transaction_type', // 资产交易类型
+  TRANSACTION_STATUS = 'transaction_status',
+  CHAIN_ID  = 'chain_id'
 }
