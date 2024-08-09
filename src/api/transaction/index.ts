@@ -18,8 +18,8 @@ export const TransactionApi = {
   },
 
   // 审核成功
-  confirmTransfer: async (params: any) => {
-    return await request.put({ url: `/transaction/confirm-transfer`, params })
+  confirmTransfer: async (data: any) => {
+    return await request.post({ url: `/transaction/confirm-transfer`, data })
   },
 
   // 查询交易配置

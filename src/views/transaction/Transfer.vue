@@ -33,7 +33,7 @@
       </el-form-item>
     </el-form>
     <template #footer>
-      <el-button @click="submitForm" type="primary" :disabled="formLoading">确认转账</el-button>
+      <el-button @click="submitForm" type="primary" :disabled="formLoading">确认</el-button>
       <el-button @click="dialogVisible = false">取 消</el-button>
     </template>
   </Dialog>

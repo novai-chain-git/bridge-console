@@ -177,9 +177,9 @@
             type="primary"
             @click="openTransfer(scope.row.id)"
             v-hasPermi="['transaction:confirm:transfer']"
-            v-show="scope.row.status === 6 "
+            v-show="scope.row.status === 3 "
           >
-            确认转账
+            人工转账
           </el-button>
         </template>
       </el-table-column>

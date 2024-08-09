@@ -5,17 +5,7 @@
         <el-text>{{ item.name }}</el-text>
       </div>
       <div class="ml-2">
-        <el-switch
-          v-model="item.value"
-          inline-prompt
-          style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-          active-value="1"
-          inactive-value="0"
-          active-text="是"
-          inactive-text="否"
-          width="60"
-          class="ml-2"
-          @change="change($event,item.key)"
+        <el-input type="number" v-model="item.value" @change="change($event,item.key)"
         />
       </div>
     </div>
