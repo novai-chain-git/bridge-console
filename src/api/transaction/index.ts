@@ -22,6 +22,11 @@ export const TransactionApi = {
     return await request.post({ url: `/transaction/confirm-transfer`, data })
   },
 
+  // 统计
+  count: async (data: any) => {
+    return await request.post({ url: `/transaction/count`, data })
+  },
+
   // 查询交易配置
   getConfig: async () => {
     return await request.get({ url: `/transaction/config` })
