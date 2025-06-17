@@ -1,4 +1,6 @@
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 /**
  * 日期快捷选项适用于 el-date-picker
@@ -71,7 +73,7 @@ export function formatDate(date: Date, format?: string): string {
   if (format === undefined) {
     format = 'YYYY-MM-DD HH:mm:ss'
   }
-  return dayjs(date).format(format)
+  return dayjs.utc(date).format(format)
 }
 
 /**

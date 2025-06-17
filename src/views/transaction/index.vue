@@ -95,6 +95,28 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="成功时间" prop="successTime">
+        <el-date-picker
+          v-model="queryParams.successTime"
+          value-format="YYYY-MM-DD HH:mm:ss"
+          type="datetimerange"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          class="!w-360px"
+        />
+      </el-form-item>
+      <el-form-item label="创建时间" prop="createTime">
+        <el-date-picker
+          v-model="queryParams.createTime"
+          value-format="YYYY-MM-DD HH:mm:ss"
+          type="datetimerange"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          class="!w-360px"
+        />
+        &nbsp;&nbsp;
+        <el-checkbox v-model="queryParams.createTimeInvert" label="不包含" size="large" />
+      </el-form-item>
       <el-form-item>
         <el-button @click="handleQuery">
           <Icon icon="ep:search" class="mr-5px"/>
@@ -161,7 +183,7 @@
           成功: {{ formatTime(scope.row.successTime) }}
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="180" fixed="right">
         <template #default="scope">
           <el-button
             link
@@ -170,16 +192,25 @@
             v-hasPermi="['transaction:audit:success']"
             v-show="scope.row.type === -1 && scope.row.status === 0 "
           >
-            审核
+            审核成功
           </el-button>
           <el-button
             link
             type="primary"
-            @click="openTransfer(scope.row.id)"
-            v-hasPermi="['transaction:confirm:transfer']"
-            v-show="scope.row.status === 3 "
+            @click="openFailureAudit(scope.row.id)"
+            v-hasPermi="['transaction:audit:failure']"
+            v-show="scope.row.type === -1 && scope.row.status === 0 "
           >
-            人工转账
+            审核失败
+          </el-button>
+          <el-button
+            link
+            type="primary"
+            @click="openResetAudit(scope.row.id)"
+            v-hasPermi="['transaction:audit:reset']"
+            v-show="scope.row.type === -1 && scope.row.auditReset === 1 "
+          >
+            重新审核
           </el-button>
         </template>
       </el-table-column>
@@ -194,6 +225,8 @@
   </ContentWrap>
 
   <Audit ref="auditRef" @success="getList"/>
+  <AuditFailure ref="auditFailureRef" @success="getList"/>
+  <AuditReset ref="auditResetRef" @success="getList"/>
   <Transfer ref="transferRef" @success="getList"/>
 </template>
 
@@ -202,6 +235,8 @@ import { getIntDictOptions, DICT_TYPE } from '@/utils/dict'
 import { formatTime } from '@/utils/formatTime'
 import { TransactionApi } from '@/api/transaction'
 import Audit from './Audit.vue'
+import AuditFailure from './AuditFailure.vue'
+import AuditReset from './AuditReset.vue'
 import Transfer from './Transfer.vue'
 import { TabsPaneContext } from "element-plus";
 
@@ -229,6 +264,7 @@ const queryParams = reactive({
   successTime: [],
   auditTime: [],
   createTime: [],
+  createTimeInvert: false,
   tabName: undefined,
 })
 const queryFormRef = ref() // 搜索的表单
@@ -250,6 +286,16 @@ const tabClick = async (tab: TabsPaneContext) => {
 const auditRef = ref()
 const openAudit = async (id: number) => {
   auditRef.value.open(id)
+}
+
+const auditFailureRef = ref()
+const openFailureAudit = async (id: number) => {
+  auditFailureRef.value.open(id)
+}
+
+const auditResetRef = ref()
+const openResetAudit = async (id: number) => {
+  auditResetRef.value.open(id)
 }
 
 const transferRef = ref()

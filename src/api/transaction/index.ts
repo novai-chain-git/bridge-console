@@ -17,6 +17,16 @@ export const TransactionApi = {
     return await request.put({ url: `/transaction/audit-success?id=` + id })
   },
 
+  // 审核失败
+  auditFailure: async (id?: number) => {
+    return await request.put({ url: `/transaction/audit-failure?id=` + id })
+  },
+
+  // 审核重置
+  auditReset: async (id?: number) => {
+    return await request.put({ url: `/transaction/audit-reset?id=` + id })
+  },
+
   // 审核成功
   confirmTransfer: async (data: any) => {
     return await request.post({ url: `/transaction/confirm-transfer`, data })

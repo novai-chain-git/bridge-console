@@ -14,11 +14,10 @@
           <el-form-item prop="createTime">
             <el-date-picker
               v-model="queryParams.createTime"
-              value-format="YYYY-MM-DD"
-              type="daterange"
+              value-format="YYYY-MM-DD HH:mm:ss"
+              type="datetimerange"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              class="!w-240px"
             />
           </el-form-item>
           <el-form-item prop="address">
